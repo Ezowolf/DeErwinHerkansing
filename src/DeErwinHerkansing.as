@@ -29,10 +29,10 @@ package
 			addChild(txt);
 			txt.defaultTextFormat = myFormat;
 			txt.text = "Score: "+char.score.toString();
-			txt.width = 150;
+			txt.width = 250;
 			addChild(obstacle);
-			char.x = 500;
-			char.y = 300;
+			char.x = 790;
+			char.y = 400;
 			addChild(char);
 			stage.addEventListener(Event.ENTER_FRAME, checkStuff);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keysDown);
@@ -56,12 +56,14 @@ package
 				obstacle.myHeight += 10;
 				char.heMustRespawn = false;
 			}
-			/*if(char.hitTestObject(obstacle))
+			if(char.hitTestObject(obstacle))
 			{
 				txt.text = "GAME OVER";
+				txt.x = stage.width/2;
+				txt.y = stage.height/2;
 				removeChild(char);
 				
-			}*/
+			}
 		}
 		public function keysDown(e:KeyboardEvent):void
 		{

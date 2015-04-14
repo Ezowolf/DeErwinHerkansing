@@ -4,12 +4,12 @@ package
 	
 	public class Enemy extends MovieClip
 	{
-		public var myHeight:Number = 30;
+		public var myHeight:Number = 50;
 		
 		public function Enemy()
 		{
 			this.graphics.beginFill(0xFF0000);
-			this.graphics.drawRect(this.x, this.y, myHeight, myHeight);
+			this.graphics.drawRect(0, 0, myHeight, myHeight);
 			this.graphics.endFill();
 		}
 		
@@ -29,7 +29,7 @@ package
 			//this.graphics.clear();
 			this.x = Math.ceil(Math.random()*stage.stageWidth/2)+150;
 			this.graphics.beginFill(0xFF0000);
-			this.graphics.drawRect(this.x, this.y, myHeight, myHeight);
+			this.graphics.drawRect(0, 0, myHeight, myHeight);
 			this.graphics.endFill();
 		}
 	}
