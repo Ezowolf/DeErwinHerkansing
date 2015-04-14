@@ -47,14 +47,15 @@ package
 				var JumpSound: Sound = new Sound();
 				JumpSound.load(new URLRequest("jump.mp3")); 
 				JumpSound.play();
-				char.grav = -12;
+				char.grav = -18;
 			}
 			char.adjust();
 			obstacle.adjust();
 			if(char.MustRespawn == true)
 			{
-				obstacle.respawn();
 				obstacle.myHeight += 7;
+				obstacle.respawn();
+				
 				char.MustRespawn = false;
 			}
 			if(char.hitTestObject(obstacle)&&char.stage)
@@ -73,7 +74,22 @@ package
 		{
 			if(e.keyCode == 32)
 			{
+				if(char.stage)
 				spaceDown = true;
+				else
+				{
+					char.score = 0;
+					obstacle.myHeight = 45;
+					addChild(char);
+					char.x = 790;
+					char.y = 400;
+					char.speed = 9;
+					txt.text = "Score: "+char.score.toString();
+					txt.x = 0;
+					txt.y = 0;
+					char.moveRight = false;
+					obstacle.respawn();
+				}
 			}
 		}
 		public function keysUp(e:KeyboardEvent):void

@@ -26,7 +26,6 @@ package
 		}
 		public function respawn():void
 		{
-			//this.graphics.clear();
 			this.x = Math.ceil(Math.random()*stage.stageWidth/2)+150;
 			this.graphics.beginFill(0xFF0000);
 			this.graphics.drawRect(0, 0, myHeight, myHeight);

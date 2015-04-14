@@ -4,9 +4,9 @@ package
 	public class Player extends MovieClip
 	{
 		public var grav:int = 0;
-		public var moveRight:Boolean = true;
+		public var moveRight:Boolean = false;
 		public var floor: int = 450;
-		public var speed: Number = 7;
+		public var speed: Number = 9;
 		public var score: int = 0;
 		public var MustRespawn:Boolean = false;
 		
@@ -31,7 +31,7 @@ package
 			this.y+=grav;
 			if(this.y+this.height/2<floor)
 			{
-			grav++;
+			grav+=2;
 			}
 			else
 			{
