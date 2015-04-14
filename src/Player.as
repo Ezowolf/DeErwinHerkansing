@@ -1,6 +1,9 @@
 package
 {
 	import flash.display.MovieClip;
+	import flash.media.Sound;
+	import flash.net.URLRequest;
+
 	public class Player extends MovieClip
 	{
 		public var grav:int = 0;
@@ -12,9 +15,7 @@ package
 		
 		public function Player()
 		{
-			this.graphics.beginFill(0x99FF00);
-			this.graphics.drawCircle(0, 0, 18);
-			this.graphics.endFill();
+			redraw();
 		}
 		public function adjust():void
 		{
@@ -57,9 +58,19 @@ package
 		}
 		public function flip():void
 		{
+			var BumpSound: Sound = new Sound();
+			BumpSound.load(new URLRequest("metal.mp3")); 
+			BumpSound.play();
 			moveRight = !moveRight;
 			speed += 0.2;
 			score++;
+			redraw();
+		}
+		public function redraw():void
+		{
+			this.graphics.beginFill(Math.random() * 0xFFFFFF);
+			this.graphics.drawCircle(0, 0, 18);
+			this.graphics.endFill();
 		}
 	}
 }

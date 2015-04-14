@@ -8,9 +8,7 @@ package
 		
 		public function Enemy()
 		{
-			this.graphics.beginFill(0xFF0000);
-			this.graphics.drawRect(0, 0, myHeight, myHeight);
-			this.graphics.endFill();
+			redraw();
 		}
 		
 		public function adjust():void
@@ -24,12 +22,23 @@ package
 				this.x = 800 - this.width / 2;
 			}
 		}
-		public function respawn():void
+		public function grow():void
 		{
-			this.x = Math.ceil(Math.random()*stage.stageWidth/2)+150;
-			this.graphics.beginFill(0xFF0000);
+			myHeight += 10;
+			this.x = Math.ceil(Math.random()*stage.stageWidth/2)+100;
+			redraw();
+		}
+		public function redraw():void
+		{
+			this.graphics.clear();
+			this.graphics.beginFill(Math.random() * 0xFFFFFF);
 			this.graphics.drawRect(0, 0, myHeight, myHeight);
 			this.graphics.endFill();
+		}
+		public function respawn():void
+		{
+			myHeight = 25;
+			grow();
 		}
 	}
 }
