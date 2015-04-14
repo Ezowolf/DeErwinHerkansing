@@ -3,8 +3,11 @@ package
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
+	import flash.media.Sound;
+	import flash.net.URLRequest;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+
 	[SWF(width=800,height=450, framerate=60, backgroundColor="0x00CCFF"]
 	public class DeErwinHerkansing extends Sprite
 	{
@@ -16,6 +19,9 @@ package
 		
 		public function DeErwinHerkansing():void
 		{
+			var mySound:Sound = new Sound();
+			mySound.load(new URLRequest("miep.mp3"));
+			mySound.play(0, 9999);
 			obstacle.x = Math.ceil(Math.random()*stage.stageWidth/2)+150;
 			obstacle.y = stage.stageHeight - obstacle.height;
 			myFormat.size = 33;
@@ -37,6 +43,9 @@ package
 			txt.text = "Score: "+char.score.toString();
 			if (spaceDown && char.y+char.width/2 == char.floor)
 			{
+				var JumpSound: Sound = new Sound();
+				JumpSound.load(new URLRequest("jump.mp3")); 
+				JumpSound.play();
 				char.grav = -12;
 			}
 			char.adjust();
@@ -47,12 +56,12 @@ package
 				obstacle.myHeight += 10;
 				char.heMustRespawn = false;
 			}
-			if(char.hitTestObject(obstacle))
+			/*if(char.hitTestObject(obstacle))
 			{
 				txt.text = "GAME OVER";
 				removeChild(char);
 				
-			}
+			}*/
 		}
 		public function keysDown(e:KeyboardEvent):void
 		{
