@@ -4,7 +4,7 @@ package
 	
 	public class Enemy extends MovieClip
 	{
-		public var myHeight:Number = 50;
+		public var myHeight:Number = 45;
 		
 		public function Enemy()
 		{

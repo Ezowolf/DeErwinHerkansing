@@ -8,7 +8,7 @@ package
 		public var floor: int = 450;
 		public var speed: Number = 7;
 		public var score: int = 0;
-		public var heMustRespawn:Boolean = false;
+		public var MustRespawn:Boolean = false;
 		
 		public function Player()
 		{
@@ -47,9 +47,9 @@ package
 			{
 				this.x = 800 - this.width / 2;
 				flip();
-				if(heMustRespawn == false)
+				if(MustRespawn == false)
 				{
-				heMustRespawn = true;
+				MustRespawn = true;
 				}
 			}
 			}

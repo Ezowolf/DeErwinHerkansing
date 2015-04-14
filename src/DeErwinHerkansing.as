@@ -40,6 +40,7 @@ package
 		}
 		public function checkStuff(e:Event):void
 		{
+			if(char.stage)
 			txt.text = "Score: "+char.score.toString();
 			if (spaceDown && char.y+char.width/2 == char.floor)
 			{
@@ -50,14 +51,17 @@ package
 			}
 			char.adjust();
 			obstacle.adjust();
-			if(char.heMustRespawn == true)
+			if(char.MustRespawn == true)
 			{
 				obstacle.respawn();
-				obstacle.myHeight += 10;
-				char.heMustRespawn = false;
+				obstacle.myHeight += 7;
+				char.MustRespawn = false;
 			}
-			if(char.hitTestObject(obstacle))
+			if(char.hitTestObject(obstacle)&&char.stage)
 			{
+				var DieSound: Sound = new Sound();
+				DieSound.load(new URLRequest("over.mp3")); 
+				DieSound.play();
 				txt.text = "GAME OVER";
 				txt.x = stage.width/2;
 				txt.y = stage.height/2;
