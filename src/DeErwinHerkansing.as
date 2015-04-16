@@ -18,8 +18,16 @@ package
 		private var back:Background = new Background();
 		private var coin:Pickup = new Pickup();
 		private var obstacletwo:Enemy = new Enemy();
+		
 		private var particle:Dusty = new Dusty();
 		private var exploder:Explode = new Explode();
+		private var powerUpFX:PowerUpPart = new PowerUpPart();
+		private var powerUpFX2:PowerUpPart = new PowerUpPart();
+		private var powerUpFX3:PowerUpFXTwo = new PowerUpFXTwo();
+		private var powerUpFX4:PowerUpFXTwo = new PowerUpFXTwo();
+		private var obstExploder:EnemyExplode = new EnemyExplode();
+		private var obst2Exploder:EnemyExplode = new EnemyExplode();
+		
 		public var txt:TextField;
 		public var tutxt:TextField;
 		public var htxt:TextField;
@@ -62,8 +70,19 @@ package
 			char.y = 400;
 			coin.x = Math.random()*stage.stageWidth;
 			coin.y = 350;
+			powerUpFX.x = coin.x
+			powerUpFX.y = coin.y
+			powerUpFX2.x = coin.x
+			powerUpFX2.y = coin.y
+				
+			addChild(obstExploder);
+			addChild(obst2Exploder);
 			addChild(particle);
 			addChild(exploder);
+			addChild(powerUpFX);
+			addChild(powerUpFX2);
+			addChild(powerUpFX3);
+			addChild(powerUpFX4);
 			
 			stage.addEventListener(Event.ENTER_FRAME, checkStuff);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keysDown);
@@ -89,6 +108,12 @@ package
 			coin.adjust();
 			particle.adjust();
 			exploder.adjust();
+			powerUpFX.adjust();
+			powerUpFX2.adjust();
+			powerUpFX3.adjust();
+			powerUpFX4.adjust();
+			obstExploder.adjust();
+			obst2Exploder.adjust();
 			if(char.MustRespawn == true)
 			{
 				obstacle.grow();
@@ -96,17 +121,21 @@ package
 			}
 			if(char.TwoMustRespawn == true)
 			{
-				if(!obstacletwo.stage && char.score > 19)
+				/*if(!obstacletwo.stage && char.score > 19)
 				{
 					addChild(obstacletwo)
 					obstacletwo.myHeight = 45; 
 					obstacletwo.redraw();
 					obstacletwo.x = Math.ceil(Math.random()*stage.stageWidth/4)+425;;
 					obstacletwo.y = 400;
-					obstacletwo.redraw()
-				}
+					obstacletwo.redraw();
+				}*/
 				if(obstacletwo.stage)
+				{
 				obstacletwo.growtwo();
+				obstacletwo.myHeight = 45;
+				obstacletwo.redraw();
+				}
 				char.TwoMustRespawn = false;
 			}
 			if(char.hitTestObject(obstacle)&&char.stage&&obstacle.lethal ==true)
@@ -115,6 +144,9 @@ package
 				hitenemy();
 				if(char.hasPowerUp == true)
 				{
+				obstExploder.x = obstacle.x + 22;
+				obstExploder.y = obstacle.y + 22;
+				obstExploder.resetAnimation = true;
 				obstacle.die();
 				char.score++;
 				var KillSound: Sound = new Sound();
@@ -128,6 +160,9 @@ package
 				hitenemy();
 				else
 				{
+					obst2Exploder.x = obstacletwo.x + 22;
+					obst2Exploder.y = obstacletwo.y + 22;
+					obst2Exploder.resetAnimation = true;
 				obstacletwo.die();
 				char.score++;
 				var KillSoundtwo: Sound = new Sound();
@@ -151,6 +186,30 @@ package
 				obstacle.redraw();
 				if(obstacletwo.stage)
 					obstacletwo.redraw();
+			}
+			if(powerUpFX.resetAlpha == true)
+			{
+				powerUpFX.x = coin.x;
+				powerUpFX.y = coin.y;
+				powerUpFX.resetAlpha = false;
+			}
+			if(powerUpFX2.resetAlpha == true)
+			{
+				powerUpFX2.x = coin.x;
+				powerUpFX2.y = coin.y;
+				powerUpFX2.resetAlpha = false;
+			}
+			if(powerUpFX3.resetAlpha == true)
+			{
+				powerUpFX3.x = coin.x;
+				powerUpFX3.y = coin.y;
+				powerUpFX3.resetAlpha = false;
+			}
+			if(powerUpFX4.resetAlpha == true)
+			{
+				powerUpFX4.x = coin.x;
+				powerUpFX4.y = coin.y;
+				powerUpFX4.resetAlpha = false;
 			}
 	}
 		public function keysDown(e:KeyboardEvent):void
@@ -219,8 +278,6 @@ package
 			removeChild(char);
 			if(obstacletwo.stage)
 			{
-				obstacletwo.x = 0;
-				obstacletwo.y = 0;
 				obstacletwo.x = -999;
 				obstacletwo.y = -999;
 				

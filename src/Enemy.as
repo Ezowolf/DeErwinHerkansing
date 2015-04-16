@@ -40,8 +40,8 @@ package
 			myHeight += 5;
 			redraw();
 			var myTween:Tween = new Tween(this, "x", Regular.easeOut , this.x, (Math.random()*stage.stageWidth/4)+85, 0.25, true);
-			myTween.addEventListener(TweenEvent.MOTION_FINISH, end);   //doesnt work
-			function end(event:TweenEvent)
+			myTween.addEventListener(TweenEvent.MOTION_FINISH, end); 
+			function end(event:TweenEvent):void
 			{
 				lethal = true;
 			}
@@ -55,8 +55,8 @@ package
 			myHeight += 5;
 			redraw();
 			var myTween:Tween = new Tween(this, "x", Regular.easeOut , this.x, (Math.random()*stage.stageWidth/4)+400, 0.25, true);
-			myTween.addEventListener(TweenEvent.MOTION_FINISH, end);   //doesnt work
-			function end(event:TweenEvent)
+			myTween.addEventListener(TweenEvent.MOTION_FINISH, end);
+			function end(event:TweenEvent):void
 			{
 				lethal = true;
 			}
@@ -68,6 +68,7 @@ package
 		{
 			lethal = false;
 			this.x = -999;
+			this.y = -999;
 			myHeight = 0;
 			redraw();
 		}
