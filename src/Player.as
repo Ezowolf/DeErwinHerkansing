@@ -12,6 +12,8 @@ package
 		public var speed: Number = 9;
 		public var score: int = 0;
 		public var MustRespawn:Boolean = false;
+		public var TwoMustRespawn:Boolean = false;
+		public var hasPowerUp:Boolean = false;
 		
 		public function Player()
 		{
@@ -43,6 +45,10 @@ package
 			{
 				this.x = this.width/2;
 				flip();
+				if(TwoMustRespawn == false)
+				{
+					TwoMustRespawn = true;
+				}
 			}
 			else if(this.x + this.width / 2 > 800)
 			{
@@ -64,6 +70,7 @@ package
 			moveRight = !moveRight;
 			speed += 0.2;
 			score++;
+			hasPowerUp = false;
 			redraw();
 		}
 		public function redraw():void
